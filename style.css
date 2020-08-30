@@ -1,6 +1,7 @@
 #chord-container {
-  width: 50%;
+  width: 960px;
   border: 1px solid black;
+  margin: 0px auto;
 }
 
 #search-bar {
@@ -17,18 +18,41 @@
   margin: 0px auto;
 }
 
-#piano {
+ #piano {
   width: 90%;
   margin: 0px auto;
-  height: 320px;
-  margin-bottom: 40px;
+}
+
+#keyboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  margin-bottom: 20px;
 }
 
 .octave {
-  display: inline;
-  /* tmp */
-  width: 50%;
-  height: 40px;
-  border: 1px solid black;
-  margin: 0px;
+  display: flex;
+  height: 100%;
+}
+
+.white-keys {
+  display: block;
+  width: 50px;
+  background-color: white;
+  border: 1px solid #333;
+}
+
+.black-keys {
+  display: block;
+  width: 30px;
+  background-color: black;
+  margin-left: -15px;
+  margin-right: -15px;
+  z-index: 2;
+  height: 60%;
+}
+
+.clearfix {
+  clear: both;
 }
