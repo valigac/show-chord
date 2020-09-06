@@ -1,6 +1,43 @@
+body {
+  background: #424242;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #370ecc;
+}
+
+#chord-container {
+  font-family: 'Roboto', sans-serif;
+  color: #2e2d2d;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#chord-container h2 {
+  text-transform: uppercase;
+  margin-bottom: 9px;
+  font-weight: normal;
+}
+
+#chord-container p {
+  font-size: 12px;
+}
+
+input {
+  font-family: 'Roboto', sans-serif;
+  padding: 8px;
+  font-size: 30px;
+  text-align: center;
+  color: #424242;
+}
+
 #chord-container {
   width: 960px;
-  border: 1px solid black;
+  border: 1px solid #424242;
   margin: 0px auto;
 }
 
@@ -13,9 +50,19 @@
   width: 100%;
 }
 
+.active-choice {
+  background: #370ecc;
+  color: white;
+}
+
 #inversions {
   width: 90%;
   margin: 0px auto;
+}
+
+#inversions > span {
+  padding: 4px;
+  cursor: pointer;
 }
 
  #piano {

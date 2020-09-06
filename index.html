@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Show Chord</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
@@ -10,13 +11,13 @@
       <!-- Input -->
       <div id="search-bar">
         <h2>Chord symbol</h2>
-        Write name of a chord (for example A minor) and press enter.
+        <p>Write name of a chord (for example <span class="highlight">A minor</span>) and press enter.</p>
         <input type="text" id="search-input" />
       </div>
       <!-- Inversions -->
       <div id="inversions">
         <h2>Inversions</h2>
-        <span>Root</span>
+        <span class="active-choice">Root</span>
         <span>First</span>
         <span>Second</span>
       </div>
