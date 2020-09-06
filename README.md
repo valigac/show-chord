@@ -1,6 +1,6 @@
-# Piano chord visualisation!
+# Piano chord visualization!
 
-Web application for visualisation of chords (with piano keyboard).
+Web application for visualization of chords (with piano keyboard).
 
 ![Screenshot](https://github.com/valigac/show-chord/blob/master/imgs/screen.PNG)
 
