@@ -8,7 +8,9 @@ Web application for visualization of chords (with piano keyboard).
 
 - [x] Root position major chord triad
 - [x] Root position minor chord triad
-- [ ] First inversion major chord triad
-- [ ] First inversion minor chord triad
-- [ ] Second inversion major chord triad
-- [ ] Second inversion minor chord triad
+- [X] First inversion major chord triad
+- [x] First inversion minor chord triad
+- [x] Second inversion major chord triad
+- [x] Second inversion minor chord triad
+- [ ] Major 7th chords
+- [ ] Minor 7th chords
