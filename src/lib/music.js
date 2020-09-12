@@ -12,7 +12,18 @@ const pitches = [
   'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
 ];
 
-function getScales() {
+const intervals = {
+  'major': [ 0, 2, 4 ], // major root position
+  'minor': [ 0, 2, 4 ], // minor root position
+};
+
+const noteOrder = {};
+  pitches.forEach((note, i) => {
+    noteOrder[note] = i;
+});
+
+/* Return scales */
+export function getScales() {
   let scales = [];
   let index = 0;
 
@@ -32,7 +43,67 @@ function getScales() {
     });
     index += pitches.length;
   });
+  console.log(scales);
+
   return scales;
 }
 
-console.log(getScales());
+/* Simple chord check */
+export function isChord(chord) {
+  let parts = chord.split(' ');
+  if (!pitches.includes(parts[0])) {
+    return false;
+  } else if (parts[1] == 'min' || parts[1] == 'minor' || parts[1] == 'maj'
+  || parts[1] == 'major' || !parts[1]) {
+    return true;
+  }
+}
+
+export function getInterval(chord, scales, inversion) {
+  let tmp = chord.split(' ');
+  let note = tmp[0].toUpperCase();
+  let type = 'major';
+  // let inversion = 0;
+
+  // Type
+  if (tmp[1] == 'min' || tmp[1] == 'minor') {
+    type = 'minor';
+  }
+
+  // otherwise assume major
+  let chordIntervals = intervals[type].slice();
+  // Inversions
+  if (note[1] == '/' || note[2] == '/') {
+    let parts = note.split('/');
+    let root = parts[0];
+    let lowest = parts[1];
+    note = root;
+
+    if (scales[note + type].notes[2] == lowest) {
+      inversion = 1;
+    } else if (scales[note + type].notes[4] == lowest) {
+      inversion = 2;
+    }
+  }
+
+  if (inversion == 1) {
+    chordIntervals.push(intervals[type][0]);
+    chordIntervals.shift();
+  } else if (inversion == 2) {
+    chordIntervals.push(intervals[type][0]);
+    chordIntervals.shift();
+     chordIntervals.push(chordIntervals[0]);
+    chordIntervals.shift();
+  }
+
+  let selected = [];
+  let octave = 0;
+  chordIntervals.forEach((i, index) => {
+    if (index && (noteOrder[scales[note + type].notes[i]]
+      < noteOrder[scales[note + type].notes[chordIntervals[index - 1]]])) {
+        octave++;
+    }
+    selected.push(scales[note + type].notes[i] + octave);
+  });
+  return selected;
+}
