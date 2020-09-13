@@ -13,14 +13,11 @@ export default class Container extends React.Component {
     };
     this.scales = getScales();
     this.handleInputChange = this.handleInputChange.bind(this);
-    console.log(this.scales);
   }
 
   handleInputChange(input, mode) {
     if (isChord(input)) {
-      console.log(this.scales);
       let intervals = getInterval(input, this.scales, mode);
-      console.log(intervals);
       this.setState({ selected: intervals });
     }
   }

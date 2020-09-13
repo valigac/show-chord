@@ -1,12 +1,14 @@
 const patterns = {
   major: [ 2, 2, 1, 2, 2, 2, 1 ],
   minor: [ 2, 1, 2, 2, 1, 2, 2 ],
+  diminished: [ 2, 1, 2, 1, 2, 1, 2, 1 ],
+  augmented: [ 3, 1, 2, 2, 3, 1 ]
 };
 
-const keyChords = {
-  major: [ 'major', 'minor', 'minor', 'major', 'major', 'minor', 'dim' ],
-  minor: [ 'minor', 'dim', 'major', 'minor', 'minor', 'major', 'major' ]
-}
+// const keyChords = {
+//   major: [ 'major', 'minor', 'minor', 'major', 'major', 'minor', 'dim' ],
+//   minor: [ 'minor', 'dim', 'major', 'minor', 'minor', 'major', 'major' ]
+// }
 
 const pitches = [
   'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
@@ -15,6 +17,8 @@ const pitches = [
 const intervals = {
   'major': [ 0, 2, 4 ], // major root position
   'minor': [ 0, 2, 4 ], // minor root position
+  'augmented': [ 0, 2, 4 ],
+  'diminished': [ 0, 2, 4 ], // diminished root position
 };
 
 const noteOrder = {};
@@ -43,7 +47,6 @@ export function getScales() {
     });
     index += pitches.length;
   });
-  console.log(scales);
 
   return scales;
 }
@@ -54,7 +57,9 @@ export function isChord(chord) {
   if (!pitches.includes(parts[0])) {
     return false;
   } else if (parts[1] == 'min' || parts[1] == 'minor' || parts[1] == 'maj'
-  || parts[1] == 'major' || !parts[1]) {
+  || parts[1] == 'major' || !parts[1] || parts[1] == 'dim' || parts[1] == 'aug'
+  || parts[1] == '+' || parts[1] == 'augmented' || parts[1] == 'o'
+  || parts[1] == 'diminished') {
     return true;
   }
 }
@@ -68,6 +73,10 @@ export function getInterval(chord, scales, inversion) {
   // Type
   if (tmp[1] == 'min' || tmp[1] == 'minor') {
     type = 'minor';
+  } else if (tmp[1] == 'aug' || tmp[1] == '+' || tmp[1] == 'augmented') {
+    type = 'augmented'
+  } else if (tmp[1] == 'dim' || tmp[1] == 'o' || tmp[1] == 'diminished') {
+    type = 'diminished'
   }
 
   // otherwise assume major
