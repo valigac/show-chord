@@ -2,7 +2,10 @@ const patterns = {
   major: [ 2, 2, 1, 2, 2, 2, 1 ],
   minor: [ 2, 1, 2, 2, 1, 2, 2 ],
   diminished: [ 2, 1, 2, 1, 2, 1, 2, 1 ],
-  augmented: [ 3, 1, 2, 2, 3, 1 ]
+  augmented: [ 3, 1, 2, 2, 3, 1 ],
+  major7: [ 2, 2, 1, 2, 2, 2, 1 ],
+  minor7: [ 2, 1, 2, 2, 1, 2, 2 ],
+  dominant7: [ 2, 2, 1, 2, 2, 1, 1 ], // 7th is minor
 };
 
 // const keyChords = {
@@ -19,6 +22,9 @@ const intervals = {
   'minor': [ 0, 2, 4 ], // minor root position
   'augmented': [ 0, 2, 4 ],
   'diminished': [ 0, 2, 4 ], // diminished root position
+  'major7': [ 0, 2, 4, 6 ], // major seventh
+  'minor7': [ 0, 2, 4, 6 ], // minor seventh
+  'dominant7': [ 0, 2, 4, 6 ] // dominant7
 };
 
 const noteOrder = {};
@@ -59,7 +65,11 @@ export function isChord(chord) {
   } else if (parts[1] == 'min' || parts[1] == 'minor' || parts[1] == 'maj'
   || parts[1] == 'major' || !parts[1] || parts[1] == 'dim' || parts[1] == 'aug'
   || parts[1] == '+' || parts[1] == 'augmented' || parts[1] == 'o'
-  || parts[1] == 'diminished') {
+  || parts[1] == 'diminished'
+  || parts[1] == '7' || parts[1] == 'major7' || parts[1] == 'minor7'
+  || parts[1] == 'maj7' || parts[1] == 'min7') {
+    if (parts[2] && parts[2] != '7')
+      return false;
     return true;
   }
 }
@@ -71,12 +81,18 @@ export function getInterval(chord, scales, inversion) {
   // let inversion = 0;
 
   // Type
-  if (tmp[1] == 'min' || tmp[1] == 'minor') {
+  if (!tmp[2] && (tmp[1] == 'min' || tmp[1] == 'minor')) {
     type = 'minor';
-  } else if (tmp[1] == 'aug' || tmp[1] == '+' || tmp[1] == 'augmented') {
+  } else if (!tmp[2] && (tmp[1] == 'aug' || tmp[1] == '+' || tmp[1] == 'augmented')) {
     type = 'augmented'
-  } else if (tmp[1] == 'dim' || tmp[1] == 'o' || tmp[1] == 'diminished') {
+  } else if (!tmp[2] && (tmp[1] == 'dim' || tmp[1] == 'o' || tmp[1] == 'diminished')) {
     type = 'diminished'
+  } else if (tmp[1] == 'maj7' || tmp[1] == 'major7' || (tmp[2] == '7' && (tmp[1] == 'major' || tmp[1] == 'maj'))) {
+    type = 'major7'
+  } else if (tmp[1] == 'min7' || tmp[1] == 'minor7' || (tmp[2] == '7' && (tmp[1] == 'minor' || tmp[1] == 'min'))) {
+    type = 'minor7'
+  } else if (tmp[1] == '7') {
+    type = 'dominant7'
   }
 
   // otherwise assume major

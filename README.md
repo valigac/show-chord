@@ -14,9 +14,9 @@ Web application for visualization of chords (with piano keyboard).
 - [x] Second inversion minor chord triad
 - [x] Augmented triad
 - [x] Diminished triad
-- [ ] Major 7th chord
-- [ ] Minor 7th chord
-- [ ] Dominant 7th chord
+- [x] Major 7th chord
+- [x] Minor 7th chord
+- [x] Dominant 7th chord
 - [ ] Diminished 7th chord
 - [ ] Half-diminished 7th chord
 - [ ] Minor major 7th chord

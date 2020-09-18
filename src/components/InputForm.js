@@ -26,7 +26,7 @@ export default class InputForm extends React.Component {
       <div>
         <div id="search-bar">
           <h2>Chord symbol</h2>
-          <p>Write name of a chord (for example <span className="highlight">A minor</span>)</p>
+          <p>Write name of a chord (for example <span className="highlight">A minor</span>). Please separate parts of chords by space (for example "C#major7" write as "C# major 7")</p>
           <input type="text" id="search-input" value={this.state.value} onChange={this.handleChange} />
         </div>
 
