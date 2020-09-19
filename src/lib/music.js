@@ -60,7 +60,7 @@ export function getScales() {
 /* Simple chord check */
 export function isChord(chord) {
   let parts = chord.split(' ');
-  if (!pitches.includes(parts[0])) {
+  if (!pitches.includes(parts[0]) && parts[0][1] != '/') {
     return false;
   } else if (parts[1] == 'min' || parts[1] == 'minor' || parts[1] == 'maj'
   || parts[1] == 'major' || !parts[1] || parts[1] == 'dim' || parts[1] == 'aug'
@@ -79,7 +79,6 @@ export function getInterval(chord, scales, inversion) {
   let note = tmp[0].toUpperCase();
   let type = 'major';
   // let inversion = 0;
-
   // Type
   if (!tmp[2] && (tmp[1] == 'min' || tmp[1] == 'minor')) {
     type = 'minor';
@@ -108,6 +107,8 @@ export function getInterval(chord, scales, inversion) {
       inversion = 1;
     } else if (scales[note + type].notes[4] == lowest) {
       inversion = 2;
+    } else if (scales[note + type].notes[6] == lowest) {
+      inversion = 6;
     }
   }
 
@@ -118,6 +119,13 @@ export function getInterval(chord, scales, inversion) {
     chordIntervals.push(intervals[type][0]);
     chordIntervals.shift();
      chordIntervals.push(chordIntervals[0]);
+    chordIntervals.shift();
+  } else if (inversion == 3) {
+    chordIntervals.push(intervals[type][0]);
+    chordIntervals.shift();
+    chordIntervals.push(chordIntervals[0]);
+    chordIntervals.shift();
+    chordIntervals.push(chordIntervals[0]);
     chordIntervals.shift();
   }
 

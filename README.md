@@ -17,6 +17,7 @@ Web application for visualization of chords (with piano keyboard).
 - [x] Major 7th chord
 - [x] Minor 7th chord
 - [x] Dominant 7th chord
+- [x] 7th chords inversion (not by name)
 - [ ] Diminished 7th chord
 - [ ] Half-diminished 7th chord
 - [ ] Minor major 7th chord

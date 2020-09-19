@@ -25,7 +25,7 @@ export default class Container extends React.Component {
   render() {
     return(
       <div id="chord-container">
-        <InputForm onInputChange={this.handleInputChange} />
+        <InputForm onInputChange={this.handleInputChange} inversions={this.state.selected.length} />
         <Piano selected={this.state.selected} />
       </div>
     );

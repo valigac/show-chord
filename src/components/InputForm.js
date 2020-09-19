@@ -21,6 +21,13 @@ export default class InputForm extends React.Component {
     this.props.onInputChange(this.state.value, e);
   }
 
+  componentDidUpdate() {
+    if (this.props.inversions != 4 && this.state.mode == 3) {
+      this.setState({ mode: 0});
+      this.props.onInputChange(this.state.value, 0);
+    }
+  }
+
   render() {
     return (
       <div>
@@ -34,6 +41,7 @@ export default class InputForm extends React.Component {
           <span className={`inversion ${(this.state.mode == 0) ? 'active-choice' : ''}`} onClick={(e) => { this.handleInversion(0) }}>Root</span>
           <span className={`inversion ${(this.state.mode == 1) ? 'active-choice' : ''}`} onClick={(e) => { this.handleInversion(1) }}>First</span>
           <span className={`inversion ${(this.state.mode == 2) ? 'active-choice' : ''}`} onClick={(e) => { this.handleInversion(2) }}>Second</span>
+          { this.props.inversions == 4 && <span className={`inversion ${(this.state.mode == 3) ? 'active-choice' : ''}`} onClick={(e) => { this.handleInversion(3) }}>Third</span> }
         </div>
 
       </div>
